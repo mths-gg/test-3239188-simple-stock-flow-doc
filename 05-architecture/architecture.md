@@ -58,3 +58,14 @@ Consulta de rango, agrupada por producto y valores congelados, sin persistencia 
 ARQ-01 arquitectura hexagonal recomendada; ARQ-02 capa de aplicación para casos de uso; ARQ-03 existe API; ARQ-04 transacción para venta/stock. Ninguno se presenta como implementación probada.
 
 **Fuente:** `spec/data-model.md`, §§0–13. No se tuvieron los documentos externos que allí se enlazan.
+
+## Cierre de coherencia tras completar los documentos
+
+- **Contexto:** el alcance cubre catálogo, existencias, operadores, ventas y consultas; imágenes quedan fuera de PostgreSQL. No se amplía a clientes, pagos ni multimoneda.
+- **Dominio:** las raíces `Product`, `Sale` y `User`, junto con `Category` de solo lectura y `SaleItem` interno, son las mismas entidades usadas por requisitos y flujos.
+- **Producto:** objetivos y visión se limitan a capacidades que el modelo respalda; impacto comercial y métricas permanecen sin afirmar.
+- **Requisitos:** criterios derivan de invariantes y consultas Q1–Q8. Los permisos no definidos se marcan como supuestos; A-1 se toma del estado posterior de §13.
+- **Persistencia:** T-09 y T-20 se reflejan según §13; los SQL del 19-09 quedan como snapshots anteriores. T-11 y CA-06.1 siguen abiertos y no se resuelven por inferencia.
+- **Duplicidades y lógica:** requisitos no duplican invariantes como funciones independientes; venta/stock se describe como una operación lógica, sin afirmar detalles de implementación; eventos son propuestas conceptuales.
+
+La arquitectura hexagonal y sus capas siguen siendo una recomendación inferida, no una constatación del sistema desplegado. Para verificar la implementación se requieren migraciones, código y una consulta actualizada del motor.
